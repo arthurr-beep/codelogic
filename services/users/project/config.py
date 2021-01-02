@@ -8,6 +8,7 @@ class BaseConfig:
     TESTING = False 
     JSONIFY_PRETTYPRINT_REGULAR = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SECRET_KEY = 'birth_is_death'
 
 class DevelopmentConfig(BaseConfig):
     """

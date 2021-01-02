@@ -5,34 +5,34 @@ from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, jsonify
 
 
-#create an instance of the app
-app = Flask(__name__)
 
-
-# set configurations
-app_config = os.getenv('APP_SETTINGS')
-app.config.from_object(app_config)
 
 #print(app.config, file=sys.stderr)
 
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
-class User(db.Model):
-    __tablename__ = "users"
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    username = db.Column(db.String(128), nullable=False)
-    email = db.Column(db.String(128), nullable=False)
-    active = db.Column(db.Boolean(), default=True, nullable=False)
-
-    def __init__(self, username, email):
-        self.username = username
-        self.email = email
+def create_app(script_info=None):
+    #create an instance of the app
+    app = Flask(__name__)
 
 
-@app.route('/users/hello', methods=['GET'])
-def hello_hi():
-    return jsonify({
-        'status': 'success',
-        'message': 'hi you!'
-    })
+    # set configurations
+    app_config = os.getenv('APP_SETTINGS')
+    app.config.from_object(app_config)
+
+    # set extensions
+    db.init_app(app)
+
+    # register blueprints
+    from project.api.users import users_blueprint
+    app.register_blueprint(users_blueprint)
+
+
+    # shell context for flask cli
+    app.shell_context_processor({'app': app, 'db': db})
+    return app
+
+
+
+
+
