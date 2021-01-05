@@ -1,3 +1,3 @@
 # CODELOGIC with Python, Flask, Docker, CI, TDD
 
-[![Build Status](https://travis-ci.org/arthurr-beep/codelogic.svg?branch=master)](https://travis-ci.org/arthurr-beep/codelogic)
+[![Build Status](https://travis-ci.com/arthurr-beep/codelogic.svg?branch=main)](https://travis-ci.com/arthurr-beep/codelogic)
