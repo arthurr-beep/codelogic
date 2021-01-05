@@ -1,13 +1,9 @@
 import os
-import sys
-import datetime
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, jsonify
+from flask import Flask
 
 
-
-
-#print(app.config, file=sys.stderr)
+# print(app.config, file=sys.stderr)
 
 db = SQLAlchemy()
 
